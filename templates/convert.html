@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block title %}Convert{% endblock %}
+
+{% block main %}
+<br> <h1>Converting Things</h1>
+<div><span style="color:#eeff59;">Remember:</span> Decimal = Base 10, Binary = Base 2, Hexadecimal = Base 16</div> <br>
+<div>
+	<input id="num_1" placeholder="Put number here" type="text">
+	<input id="base_1" placeholder="Base" type="number" style="width:60px" min="2" max="36">
+</div> <br>
+<div>
+	<input id="num_2" placeholder="Put number here" type="text">
+	<input id="base_2" placeholder="Base" type="number" style="width:60px" min="2" max="36">
+</div> <br>
+<button class="btn btn-success btn-lg" id="con">Convert</button> <br> <br> <br>
+<h4>Character Key</h4>
+<table class="neat block">
+	<tr>
+		<th class="neat">Character</th>
+		<th class="neat">Decimal Equivalent</th>
+	</tr>
+	{% for num in range(10) %}
+	<tr style="background-color:{{col[num]}}">
+		<td class="neat">{{num}}</td>
+		<td class="neat">{{num}}</td>
+	</tr>
+	{% endfor %}
+	{% for num in range(8) %}
+	<tr style="background-color:{{col[num]}}">
+		<td class="neat">{{letters[num]}}</td>
+		<td class="neat">{{num+10}}</td>
+	</tr>
+	{% endfor %}
+</table>
+<table class="neat block">
+	<tr>
+		<th class="neat">Character</th>
+		<th class="neat">Decimal Equivalent</th>
+	</tr>
+	{% for num in range(8,26) %}
+	<tr style="background-color:{{col[num]}}">
+		<td class="neat">{{letters[num]}}</td>
+		<td class="neat">{{num+10}}</td>
+	</tr>
+	{% endfor %}
+</table> <br>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="static/convert.js"></script>
+<script>
+	"use strict";
+	let num_1 = document.getElementById("num_1");
+	let num_2 = document.getElementById("num_2"); 
+	let base_1 = document.getElementById("base_1");
+	let base_2 = document.getElementById("base_2");
+
+	document.getElementById("con").onclick = function(){
+		if(!(num_1.value) && !(num_2.value)){
+			alert("Please enter a number");
+		} else if(!(base_1.value) || !(base_2.value)){
+			alert("Please enter both bases.");
+		} else if(base_1.value<2 || base_1.value>36 || base_2.value<2 || base_2.value>36){
+			alert("Please enter bases between 2 and 36.");
+		}
+		if(num_1.value){
+			let dec = convertToDec(num_1.value,base_1.value);
+			num_2.value = dec.toString(base_2.value);
+		} else{
+			let dec = convertToDec(num_2.value,base_2.value);
+			num_1.value = dec.toString(base_1.value);
+		}
+	}
+</script>
+{% endblock %}

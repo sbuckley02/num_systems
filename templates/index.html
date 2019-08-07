@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+<br>
+<h1 id="greet"></h1>
+<h5 id="glad"></h5> <br>
+<h4 id="ques"></h4>
+<button class="btn btn-success" id="yes">Yes</button>
+<button class="btn btn-danger" id="no">No</button> <br> <br>
+<div id="area">
+	<h5 id="feed"></h5>
+	<p id="expl"></p>
+	<a href="/learn" id="le"><button class="btn btn-success btn-lg" name="le">Learn what number systems are and how they work</button></a> <br> <br>
+	<a href="/convert" id="conv"><button class="btn btn-primary btn-lg" name="conv">Convert between different number systems</button></a> <br> <br>
+	<a href="/calculate" id="calc"><button class="btn btn-danger btn-lg" name="calc">Use a calculator that works for any number system from base 2 to base 36</button></a> <br> <br>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+	"use strict";
+	let area = document.getElementById("area");
+	let yes = document.getElementById("yes");
+	let no = document.getElementById("no");
+	let feed = document.getElementById("feed");
+	let right = "You're clever. Either you know your number systems well, or you don't but just knew that was a trick question. Anyway, here's why 8 + 8 can be equal to 10:";
+	let wrong = "You simpleton. Did you really think I was going to ask if 8 + 8 could be equal to 10 for no reason? I obviously have an agenda here. Get with the program. Anyway, here's why 8 + 8 can be equal to 10:";
+	yes.onclick = function(){
+		area.style = "visibility:visible";
+		yes.disabled = "true";
+		no.disabled = "true";
+		yes.style="opacity:1; visibility:visible;";
+		ques.style = "color: #30a64a;"
+		addTxt(feed,right);
+	}
+	no.onclick = function(){
+		area.style = "visibility:visible";
+		yes.disabled = "true";
+		no.disabled = "true";
+		yes.style="opacity:1; visibility:visible;";
+		ques.style = "color: #f74343;"
+		addTxt(feed,wrong);
+	}
+	let executed = [false,false,false,false];
+	let greet = document.getElementById("greet");
+	let glad = document.getElementById("glad");
+	let gldtxt = "My name is Stephen Buckley. I don't know how or why you're here, but I'm glad that you are.";
+	let expl = document.getElementById("expl");
+	let exptxt = 'When adding 8 and 8 in our base-10 number system, the answer would obviously be 16. However, you can add 8 to 8 in other number systems, with different bases. In hexidecimal (base 16), for example, 8 + 8 would be 10, as 10 in hexidecimal is 16 in base-10. What is this you ask? What is hexidecimal? What does "base 16" or "base 10" mean? Allow my website to teach you.';
+	function addTxt(element,txt){
+		function add(){
+			if(i < txt.length){
+				setTimeout(add,50,element,txt);
+				element.innerHTML+=txt[i];
+				i++;
+			}
+			if(greet.innerHTML == "Greetings!" && !(executed[0])){
+				executed[0] = true;
+				addTxt(glad,gldtxt);
+			}
+			else if(glad.innerHTML == gldtxt && !(executed[1])){
+				executed[1] = true;
+				addTxt(document.getElementById("ques"),"Now, answer this: Can 8 + 8 be equal to 10?");
+				setTimeout(function(){
+					yes.style = "visibility:visible";
+					no.style = "visibility:visible";
+				},2500);
+			}
+			else if((feed.innerHTML == right || feed.innerHTML == wrong) && !(executed[2])){
+				executed[2] = true;
+				addTxt(expl,exptxt);
+			}
+			else if(expl.innerHTML == exptxt && !(executed[3])){
+				executed[3] = true;
+				let btns = ["le","conv","calc"];
+				let j=0;
+				let t = setInterval(function(){
+					if(j == 3){
+						clearInterval(t);
+					} else {
+						document.getElementById(btns[j]).style = "visibility:visible;";
+						j++;
+					}
+				},500);
+			}
+		}
+		let i = 0;
+		add();
+	}
+	addTxt(greet,"Greetings!");
+	</script>
+{% endblock %}

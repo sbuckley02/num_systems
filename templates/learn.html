@@ -1,0 +1,864 @@
+{% extends "layout.html" %}
+
+{% block title %}Learn{% endblock %}
+
+{% block main %}
+<br>
+<h1>Learning Time</h1> <br>
+
+<h4>Outline</h4>
+<a href="#gen">Number Systems in General</a> <br>
+<a href="#our">Our Number System</a> <br>
+<a href="#bin">Binary</a> <br>
+<a href="#hex">Hexadecimal</a> <br>
+<a href="#oth">Other Number Systems</a> <br>
+<a href="#mat">Math with Number Systems</a> <br>
+<a href="#food">Food For Thought</a> <br> <br>
+
+<h4 id="gen">Number Systems in General</h4>
+<p>Number systems are simply ways of representing numbers. In this website, we will only look at number systems that follow the same "rules," meaning Roman Numerals and ancient systems will be excluded. The number systems that I will discuss all follow the same mathematical formula, except with different bases.</p>
+<p>All number systems follow this formula, with <i>b</i> representing their base and the underlines representing their digits. (Don't worry if you don't understand this yet). </p>
+<table>
+	<tr>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+		<td>.</td>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+	</tr>
+	<tr>
+		<td>b<sup>2</sup></td>
+		<td>b<sup>1</sup></td>
+		<td>b<sup>0</sup></td>
+		<td></td>
+		<td>b<sup>-1</sup></td>
+		<td>b<sup>-2</sup></td>
+		<td>b<sup>-3</sup></td>
+	</tr>
+</table>
+<p>To explain this formula, I must give examples first.</p>
+
+<h4 id="our">Our Number System</h4>
+<p>When we learned our own number system as children, decimal places were given special names, from the hundreds place to the hundredths place. This is the "formula" we learned:</p>
+<table>
+	<tr>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+		<td>.</td>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+	</tr>
+	<tr>
+		<td>100</td>
+		<td>10</td>
+		<td>1</td>
+		<td></td>
+		<td>0.1</td>
+		<td>0.01</td>
+		<td>0.001</td>
+	</tr>
+</table>
+<p>Let's say that you have the number 321.012. What does this really mean?<br>Well, there is a 3 in the hundreds place. Therefore, you have three hundreds, or 3&#215;100. There are 2 tens, or 2&#215;10. Using this process for every other digit, 321.012 can be represented by (3&#215;100) + (2&#215;10) + (1&#215;1) + (0&#215;0.1) + (1&#215;0.01) + (2&#215;0.001).</p>
+<p>Look at the second number being multiplied in every multiplication expression above. Do you see a pattern?<br>
+The pattern is that all of those numbers are powers of 10. 10<sup>-2</sup> is 0.01, 10<sup>-1</sup> is 0.1, 10<sup>0</sup> is 1, 10<sup>1</sup> is 10, 10<sup>2</sup> is 100, and so on.<br>
+From this, we have another way of representing 321.012: (3&#215;10<sup>2</sup>) + (2&#215;10<sup>1</sup>) + (1&#215;10<sup>0</sup>) + (0&#215;10<sup>-1</sup>) + (1&#215;10<sup>-2</sup>) + (2&#215;10<sup>-3</sup>).</p>
+Recall the formula I presented earlier:
+<table>
+	<tr>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+		<td>.</td>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+	</tr>
+	<tr>
+		<td>b<sup>2</sup></td>
+		<td>b<sup>1</sup></td>
+		<td>b<sup>0</sup></td>
+		<td></td>
+		<td>b<sup>-1</sup></td>
+		<td>b<sup>-2</sup></td>
+		<td>b<sup>-3</sup></td>
+	</tr>
+</table>
+Knowing that our number system is base-10, let's replace <i>b</i> with 10.
+<table>
+	<tr>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+		<td>.</td>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+	</tr>
+	<tr>
+		<td>10<sup>2</sup></td>
+		<td>10<sup>1</sup></td>
+		<td>10<sup>0</sup></td>
+		<td></td>
+		<td>10<sup>-1</sup></td>
+		<td>10<sup>-2</sup></td>
+		<td>10<sup>-3</sup></td>
+	</tr>
+</table>
+Furthermore, let's fill in the blanks with the digits from 312.012.
+<table>
+	<tr>
+		<td><u>3</u></td>
+		<td><u>2</u></td>
+		<td><u>1</u></td>
+		<td>.</td>
+		<td><u>0</u></td>
+		<td><u>1</u></td>
+		<td><u>2</u></td>
+	</tr>
+	<tr>
+		<td>10<sup>2</sup></td>
+		<td>10<sup>1</sup></td>
+		<td>10<sup>0</sup></td>
+		<td></td>
+		<td>10<sup>-1</sup></td>
+		<td>10<sup>-2</sup></td>
+		<td>10<sup>-3</sup></td>
+	</tr>
+</table>
+<p>Notice how it perfectly coincides with the expression I gave for the number earlier. You can think of the placeholders in each digit as counting numbers: there are 3 instances of 10<sup>2</sup>, 2 instances of 10<sup>1</sup>, and so on.</p>
+<p>Now, why is this important? Who cares?<br>It turns out that our base, <i>b</i>, isn't always 10.</p>
+
+<h4 id="bin">Binary</h4>
+<p>Probably the most important number system outside our own is <i>binary</i>, which is base-2.<br>
+In binary, there are only two digits, 0 and 1. This is important because it's how computers operate. Computers run on electricity, and this electricity only has two states: on and off. "On" is represented by 1 and "off" is represented by 0. If you combine multiple digits of binary, however, you can represent numbers much larger than 0 or 1.</p>
+Let's go back to the formula:
+<table>
+	<tr>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+		<td>.</td>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+	</tr>
+	<tr>
+		<td>b<sup>2</sup></td>
+		<td>b<sup>1</sup></td>
+		<td>b<sup>0</sup></td>
+		<td></td>
+		<td>b<sup>-1</sup></td>
+		<td>b<sup>-2</sup></td>
+		<td>b<sup>-3</sup></td>
+	</tr>
+</table>
+Binary is base-2, so we can replace <i>b</i> with 2.
+<table>
+	<tr>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+		<td>.</td>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+	</tr>
+	<tr>
+		<td>2<sup>2</sup></td>
+		<td>2<sup>1</sup></td>
+		<td>2<sup>0</sup></td>
+		<td></td>
+		<td>2<sup>-1</sup></td>
+		<td>2<sup>-2</sup></td>
+		<td>2<sup>-3</sup></td>
+	</tr>
+</table>
+The number 6, in binary, is 110.000. What does this mean exactly? Let's put it into the formula to find out.
+<table>
+	<tr>
+		<td><u>1</u></td>
+		<td><u>1</u></td>
+		<td><u>0</u></td>
+		<td>.</td>
+		<td><u>0</u></td>
+		<td><u>0</u></td>
+		<td><u>0</u></td>
+	</tr>
+	<tr>
+		<td>2<sup>2</sup></td>
+		<td>2<sup>1</sup></td>
+		<td>2<sup>0</sup></td>
+		<td></td>
+		<td>2<sup>-1</sup></td>
+		<td>2<sup>-2</sup></td>
+		<td>2<sup>-3</sup></td>
+	</tr>
+</table>
+Using the logic from earlier, this simply means there is one instance of 2<sup>2</sup> and one instance of 2<sup>1</sup>. <br>
+In order to truly visualize this, let's simplify the formula a bit, like teachers do with our number system.
+<table>
+	<tr>
+		<td><u>1</u></td>
+		<td><u>1</u></td>
+		<td><u>0</u></td>
+		<td>.</td>
+		<td><u>0</u></td>
+		<td><u>0</u></td>
+		<td><u>0</u></td>
+	</tr>
+	<tr>
+		<td>4</td>
+		<td>2</td>
+		<td>1</td>
+		<td></td>
+		<td>0.5</td>
+		<td>0.25</td>
+		<td>0.125</td>
+	</tr>
+</table>
+<p>Think of the first digit as the fours place, the second as the twos place, and so on. From this perspective, it is clear that 110 in binary simply means you're adding 4 and 2 to make 6.</p>
+<p>For some more practice, let's try to find out what 111000 is in decimal (base-10).</p>
+Once again, let's use the formula:
+<table>
+	<tr>
+		<td><u>1</u></td>
+		<td><u>1</u></td>
+		<td><u>1</u></td>
+		<td><u>0</u></td>
+		<td><u>0</u></td>
+		<td><u>0</u></td>
+	</tr>
+	<tr>
+		{% for num in range(1,7) %}
+		<td>2<sup>{{6-num}}</sup></td>
+		{% endfor %}
+	</tr>
+</table>
+We see that it is equal to (1&#215;2<sup>5</sup>) + (1&#215;2<sup>4</sup>) + (1&#215;2<sup>3</sup>) + (0&#215;2<sup>2</sup>) + (0&#215;2<sup>1</sup>) + (0&#215;2<sup>0</sup>). <br>
+<p>This becomes 32 + 16 + 8, which results in the number 56.</p>
+<p>As we can see, binary is a number system just like ours, except with a much smaller base.</p>
+
+<h4 id="hex">Hexadecimal</h4>
+<p>Another important number system is <i>hexadecimal</i>, which is base-16.<br>Hexadecimal is used, once again, in computing. However, it's used for the convenience of humans, rather than computers themselves. It is essentially used to simplify binary digits, making them easier to understand (one hexadecimal digit is the equivalent of four binary digits). It's especially used when representing colors, simplifying their representations from 24 digits to just 6.</p>
+Let's take a look at the formula to see how this number system works exactly:
+<table>
+	<tr>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+		<td>.</td>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+	</tr>
+	<tr>
+		<td>16<sup>2</sup></td>
+		<td>16<sup>1</sup></td>
+		<td>16<sup>0</sup></td>
+		<td></td>
+		<td>16<sup>-1</sup></td>
+		<td>16<sup>-2</sup></td>
+		<td>16<sup>-3</sup></td>
+	</tr>
+</table>
+<p>Notice how the second digit is 16<sup>1</sup>. This means that any integer under 16, from 0 to 15, will have a 0 in the second digit, and will only need one digit to represent it. This creates a problem:</p>
+<table class="neat block">
+	<tr>
+		<th class="neat">Decimal</th>
+		<th class="neat">Hexadecimal</th>
+	</tr>
+	{% for num in range(9) %}
+	<tr>
+		<td class="neat">{{num}}</td>
+		<td class="neat">{{num}}</td>
+	</tr>
+	{% endfor %}
+</table>
+<table class="neat block">
+	<tr>
+		<th class="neat">Decimal</th>
+		<th class="neat">Hexadecimal</th>
+	</tr>
+	<tr>
+		<td class="neat">9</td>
+		<td class="neat">9</td>
+	</tr>
+	{% for num in range(10,16) %}
+	<tr>
+		<td class="neat">{{num}}</td>
+		<td class="neat">?</td>
+	</tr>
+	{% endfor %}
+	{% for num in range(16,18) %}
+	<tr>
+		<td class="neat">{{num}}</td>
+		<td class="neat">{{num-6}}</td>
+	</tr>
+	{% endfor %}
+</table> <br>
+The "formula" has another aspect to it: the amount of characters of a number system is always equal to its base. In binary, base-2, there were two characters. In our base-10 system, we have 10 characters: 0, 1, 2, 3, 4, 5, 6, 7, 8, and 9. For base-16, we need 16 characters. But where do we get the last 6 from? <br>
+<p>The answer: <i>The alphabet.</i></p>
+<p>Someone decided that to represent 10 through 15, we would just use letters. Take a look:</p>
+<table class="neat block">
+	<tr>
+		<th class="neat">Decimal</th>
+		<th class="neat">Hexadecimal</th>
+	</tr>
+	{% for num in range(9) %}
+	<tr>
+		<td class="neat">{{num}}</td>
+		<td class="neat">{{num}}</td>
+	</tr>
+	{% endfor %}
+</table>
+<table class="neat block">
+	<tr>
+		<th class="neat">Decimal</th>
+		<th class="neat">Hexadecimal</th>
+	</tr>
+	<tr>
+		<td class="neat">9</td>
+		<td class="neat">9</td>
+	</tr>
+	{% for num in range(10,16) %}
+	<tr>
+		<td class="neat">{{num}}</td>
+		<td class="neat">{{letters[num-10]}}</td>
+	</tr>
+	{% endfor %}
+	{% for num in range(16,18) %}
+	<tr>
+		<td class="neat">{{num}}</td>
+		<td class="neat">{{num-6}}</td>
+	</tr>
+	{% endfor %}
+</table> <br>
+<p>Now that we have the 16 characters that we need, let's do some practice: What's 255 in hexadecimal?</p>
+We must summon the formula again:
+<table>
+	<tr>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+		<td>.</td>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+	</tr>
+	<tr>
+		<td>16<sup>2</sup></td>
+		<td>16<sup>1</sup></td>
+		<td>16<sup>0</sup></td>
+		<td></td>
+		<td>16<sup>-1</sup></td>
+		<td>16<sup>-2</sup></td>
+		<td>16<sup>-3</sup></td>
+	</tr>
+</table>
+<p>Now we need to know our powers of 16: 16<sup>0</sup> is 1, 16<sup>1</sup> is 16, and 16<sup>2</sup> is 256.</p>
+256 goes into 255 zero times, so we'll put a 0 in that digit.
+<table>
+	<tr>
+		<td><u>0</u></td>
+		<td>__</td>
+		<td>__</td>
+		<td>.</td>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+	</tr>
+	<tr>
+		<td>16<sup>2</sup></td>
+		<td>16<sup>1</sup></td>
+		<td>16<sup>0</sup></td>
+		<td></td>
+		<td>16<sup>-1</sup></td>
+		<td>16<sup>-2</sup></td>
+		<td>16<sup>-3</sup></td>
+	</tr>
+</table> <br>
+16 goes into 255 fifteen times, as 16&#215;15 = 240. 15 in hexadecimal is represented by the character <i>f</i>, so we'll put that there.
+<table>
+	<tr>
+		<td><u>0</u></td>
+		<td><u>f</u></td>
+		<td>__</td>
+		<td>.</td>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+	</tr>
+	<tr>
+		<td>16<sup>2</sup></td>
+		<td>16<sup>1</sup></td>
+		<td>16<sup>0</sup></td>
+		<td></td>
+		<td>16<sup>-1</sup></td>
+		<td>16<sup>-2</sup></td>
+		<td>16<sup>-3</sup></td>
+	</tr>
+</table> <br>
+With the <i>f</i>&nbsp; there, the hexadecimal number now has a value of 240. We want 255, so we still need to add 15 to that hexadecimal number. In the "ones" digit, or the 16<sup>0</sup> digit, we can represent 15 once again with <i>f</i>.
+<table>
+	<tr>
+		<td><u>0</u></td>
+		<td><u>f</u></td>
+		<td><u>f</u></td>
+		<td>.</td>
+		<td><u>0</u></td>
+		<td><u>0</u></td>
+		<td><u>0</u></td>
+	</tr>
+	<tr>
+		<td>16<sup>2</sup></td>
+		<td>16<sup>1</sup></td>
+		<td>16<sup>0</sup></td>
+		<td></td>
+		<td>16<sup>-1</sup></td>
+		<td>16<sup>-2</sup></td>
+		<td>16<sup>-3</sup></td>
+	</tr>
+</table>
+<p>As we can see, the hexadecimal number ff represents 255. This makes sense, as 255 is equal to (15&#215;16<sup>1</sup>) + (15&#215;16<sup>0</sup>).</p>
+
+<h4 id="oth">Other Number Systems</h4>
+We're now familiar with base-2, base-10, and base-16 number systems. We know that they all follow this formula, where <i>b</i> is the base:
+<table>
+	<tr>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+		<td>.</td>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+	</tr>
+	<tr>
+		<td>b<sup>2</sup></td>
+		<td>b<sup>1</sup></td>
+		<td>b<sup>0</sup></td>
+		<td></td>
+		<td>b<sup>-1</sup></td>
+		<td>b<sup>-2</sup></td>
+		<td>b<sup>-3</sup></td>
+	</tr>
+</table> <br>
+<p>Using the formula, we can use number systems of any base (with a minimum of 2).</p>
+<p>To truly understand this concept, let's use an example:<br>We're told that a base-5 number is 12.34. What is this number in base-10?</p>
+As always, let's use the formula:
+<table>
+	<tr>
+		<td><u>0</u></td>
+		<td><u>1</u></td>
+		<td><u>2</u></td>
+		<td>.</td>
+		<td><u>3</u></td>
+		<td><u>4</u></td>
+		<td><u>0</u></td>
+	</tr>
+	<tr>
+		<td>5<sup>2</sup></td>
+		<td>5<sup>1</sup></td>
+		<td>5<sup>0</sup></td>
+		<td></td>
+		<td>5<sup>-1</sup></td>
+		<td>5<sup>-2</sup></td>
+		<td>5<sup>-3</sup></td>
+	</tr>
+</table>
+<p>This is equal to (0&#215;5<sup>2</sup>) + (1&#215;5<sup>1</sup>) + (2&#215;5<sup>0</sup>) + (3&#215;5<sup>-1</sup>) + (4&#215;5<sup>-2</sup>) + (0&#215;5<sup>-3</sup>).<br>
+This simplifies to 5 + 2 + 0.6 + 0.16. Adding these, we find that 12.34 in base 5 is 7.76 in base 10.
+</p>
+Let's try something radical now: let's find out what 1,222 is in base-36.<br>
+As previously mentioned, a number system has the same amount of characters as its base. Therefore, for a base-36 system, we need 36 characters. Like the inventor of hexadecimal did, we can use the alphabet to fill in the blanks:<br>
+<table class="neat block">
+	<tr>
+		<th class="neat">Base-10</th>
+		<th class="neat">Base-36</th>
+	</tr>
+	{% for num in range(10) %}
+	<tr>
+		<td class="neat">{{num}}</td>
+		<td class="neat">{{num}}</td>
+	</tr>
+	{% endfor %}
+	{% for num in range(10,18) %}
+	<tr>
+		<td class="neat">{{num}}</td>
+		<td class="neat">{{letters[num-10]}}</td>
+	</tr>
+	{% endfor %}
+</table>
+<table class="neat block">
+	<tr>
+		<th class="neat">Base-10</th>
+		<th class="neat">Base-36</th>
+	</tr>
+	{% for num in range(18,36) %}
+	<tr>
+		<td class="neat">{{num}}</td>
+		<td class="neat">{{letters[num-10]}}</td>
+	</tr>
+	{% endfor %}
+</table> <br>
+Now, we have the tools to convert 1,222 to base-36.<br>
+Summon the formula:
+<table>
+	<tr>
+		<td>__</td>
+		<td>__</td>
+		<td>__</td>
+	</tr>
+	<tr>
+		<td>36<sup>2</sup></td>
+		<td>36<sup>1</sup></td>
+		<td>36<sup>0</sup></td>
+	</tr>
+</table> <br>
+1,296 goes into 1,222 zero times, so we can place a 0 in the first digit (note that 36<sup>2</sup> = 1,296).
+<table>
+	<tr>
+		<td><u>0</u></td>
+		<td>__</td>
+		<td>__</td>
+	</tr>
+	<tr>
+		<td>36<sup>2</sup></td>
+		<td>36<sup>1</sup></td>
+		<td>36<sup>0</sup></td>
+	</tr>
+</table> <br>
+36 goes into 1,222 thirty-three times, as 36&#215;33 is 1,188. The character that represents 33 is <i>x</i>, so that can go in the second digit.
+<table>
+	<tr>
+		<td><u>0</u></td>
+		<td><u>x</u></td>
+		<td>__</td>
+	</tr>
+	<tr>
+		<td>36<sup>2</sup></td>
+		<td>36<sup>1</sup></td>
+		<td>36<sup>0</sup></td>
+	</tr>
+</table> <br>
+Subtracting 1,188 from 1,222, we're left with a remainder of 34. In the ones digit, we can represent this with the character <i>y</i>.
+<table>
+	<tr>
+		<td><u>0</u></td>
+		<td><u>x</u></td>
+		<td><u>y</u></td>
+	</tr>
+	<tr>
+		<td>36<sup>2</sup></td>
+		<td>36<sup>1</sup></td>
+		<td>36<sup>0</sup></td>
+	</tr>
+</table> <br>
+<p>As we can see, 1,222 in base-10 is equivalent to a concise xy in base-36.</p>
+
+<h4 id="mat">Math with Number Systems</h4>
+	<p>Just like we can do math in our base-10 number systems, we can do math with other number systems as well!</p>
+	There are two methods for doing math in number systems that aren't base-10:<br>
+	1. Convert all numbers to base-10, do the math, then convert back to the original number system.<br>
+	<p>2. Do math in that number system using the same rules that we would use for math in base-10.</p>
+	<p>We're going to try both.</p>
+<h5 class="minihead">Method #1</h5>
+	<p>If you recall, on the home page, I asked you if 8 + 8 could be equal to 10. The answer was yes, because in hexadecimal, this would be true.</p>
+	Allow me to show you why, in more detail.<br>The base-10 number 8 is still 8 in hexadecimal. Adding 8 + 8 in decimal gives 16. Here is 16 in hexadecimal:
+	<table>
+		<tr>
+			<td><u>1</u></td>
+			<td><u>0</u></td>
+		</tr>
+		<tr>
+			<td>16<sup>1</sup></td>
+			<td>16<sup>0</sup></td>
+		</tr>
+	</table>
+	<p>As we can see, 16 is 10 in hexadecimal because it is equal to (1&#215;16<sup>1</sup>) + (0&#215;16<sup>0</sup>).</p>
+	Let's try a more complicated problem, in base-13:<br>
+	$$ {\sqrt{\frac{a^2}{17}+35}} $$
+	<p>This may look horrifying, but it is easier than it looks. Since the expression is in base-13, we need to convert every number to base 10.</p>
+	<p>First, <i>a</i> is a character that represents 10. We can replace <i>a</i> with 10.<br>
+	17 is equivalent to (1&#215;13<sup>1</sup>) + (7&#215;13<sup>0</sup>). This gives a value of 20 in decimal.<br>
+	Finally, 35 is equivalent to (3&#215;13<sup>1</sup>) + (5&#215;13<sup>0</sup>). This gives a value of 44 in decimal.</p>
+	We can now re-write the expression in base-10, using these substitutions:<br>
+	$$ {\sqrt{\frac{10^2}{20}+44}} $$
+	We can simplify this to one base-10 number using mathematical genius.<br>
+	$$ {\sqrt{\frac{10^2}{20}+44} = \sqrt{\frac{100}{20}+44} = \sqrt{5+44} = \sqrt{49} = 7} $$
+	<p>We have found our answer in base-10. As it turns out, 7 in base-10 is <i>also</i> 7 in base-13.</p>
+	<p>Therefore, our answer to this seemingly complicated problem is just 7.</p>
+<h5 class="minihead">Method #2</h5>
+	<p>Method #1 is seemingly straight-forward. You convert all numbers into base-10, do the math, and convert them back. However, this is not always ideal. Here's an example:<br>
+	Let's try to add 1.1 to 2.04 in base-7.</p>
+	<p>Using Method #1, we have to convert these numbers into base-10:<br>
+	1.1 is equal to (1&#215;7<sup>0</sup>) + (1&#215;7<sup>-1</sup>). We can leave this expression as 1 + 7<sup>-1</sup>.<br>
+	2.04 is equal to (2&#215;7<sup>0</sup>) + (0&#215;7<sup>-1</sup>) + (4&#215;7<sup>-2</sup>). We can leave this expression as 2 + 4(7<sup>-2</sup>).</p>
+	<p>Adding these expressions, we get 2 + 1 + 7<sup>-1</sup> + 4(7<sup>-2</sup>).<br>
+	Simplifying, we get 3 + 7<sup>-1</sup> + 4(7<sup>-2</sup>).</p>
+	Using the formula, we can convert this to base-7 to get our final answer:
+	<table>
+		<tr>
+			<td><u>3</u></td>
+			<td>.</td>
+			<td><u>1</u></td>
+			<td><u>4</u></td>
+		</tr>
+		<tr>
+			<td>7<sup>0</sup></td>
+			<td></td>
+			<td>7<sup>-1</sup></td>
+			<td>7<sup>-2</sup></td>
+		</tr>
+	</table>
+	<p>The method worked, as it always does, but it was completely inefficient. If you did not notice, there was a much easier way of finding this answer, Method #2.</p>
+	<p>Method #2 removes the steps of converting the numbers into base-10 and back. Instead, the math is simply done within the base system.</p>
+	Take a look:
+	<table>
+		<tr>
+			<td></td>
+			<td>1</td>
+			<td>.</td>
+			<td>1</td>
+			<td></td>
+		</tr>
+		<tr class="prob">
+			<td>+</td>
+			<td>2</td>
+			<td>.</td>
+			<td>0</td>
+			<td>4</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>3</td>
+			<td>.</td>
+			<td>1</td>
+			<td>4</td>
+		</tr>
+	</table>
+	<p>All we needed to do here was to treat addition in base-7 just like we treat addition in base-10. We found our answer much faster than if we had used Method #1.</p>
+	<p>Every method has its drawbacks, however. Method #2 is great for simple problems, like that one. However, it can get messy when it comes to worse ones:<br>
+	Using Method #2, let's try to find 10101101 + 11100110 in binary.</p>
+	<table>
+		<tr>
+			<td></td>
+			<td>1</td>
+			<td>0</td>
+			<td>1</td>
+			<td>0</td>
+			<td>1</td>
+			<td>1</td>
+			<td>0</td>
+			<td>1</td>
+		</tr>
+		<tr class="prob">
+			<td>+</td>
+			<td>1</td>
+			<td>1</td>
+			<td>1</td>
+			<td>0</td>
+			<td>0</td>
+			<td>1</td>
+			<td>1</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			{% for _ in range(7) %}
+			<td></td>
+			{% endfor %}
+			<td>1</td>
+			<td>1</td>
+		</tr>
+	</table>
+	We have come across a problem: 1 is the highest character in binary, yet we have to add 1 and 1. To solve this, we need to treat it, once again, like adding in decimal. We need to carry a 1 over to the digit to the left (note that 1 + 1 in binary is 10).
+	<table>
+		<tr>
+			{% for _ in range(5) %}
+			<td></td>
+			{% endfor %}
+			<td>1</td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>1</td>
+			<td>0</td>
+			<td>1</td>
+			<td>0</td>
+			<td>1</td>
+			<td>1</td>
+			<td>0</td>
+			<td>1</td>
+		</tr>
+		<tr class="prob">
+			<td>+</td>
+			<td>1</td>
+			<td>1</td>
+			<td>1</td>
+			<td>0</td>
+			<td>0</td>
+			<td>1</td>
+			<td>1</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			{% for _ in range(6) %}
+			<td></td>
+			{% endfor %}
+			<td>0</td>
+			<td>1</td>
+			<td>1</td>
+		</tr>
+	</table>
+	Knowing this, we can solve the rest of the digits.
+	<table>
+		<tr>
+			<td></td>
+			<td>1</td>
+			<td>1</td>
+			<td></td>
+			<td>1</td>
+			<td>1</td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>1</td>
+			<td>0</td>
+			<td>1</td>
+			<td>0</td>
+			<td>1</td>
+			<td>1</td>
+			<td>0</td>
+			<td>1</td>
+		</tr>
+		<tr class="prob">
+			<td>+</td>
+			<td>1</td>
+			<td>1</td>
+			<td>1</td>
+			<td>0</td>
+			<td>0</td>
+			<td>1</td>
+			<td>1</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>1</td>
+			<td>0</td>
+			<td>0</td>
+			<td>1</td>
+			<td>0</td>
+			<td>0</td>
+			<td>1</td>
+			<td>1</td>
+		</tr>
+	</table>
+	<p>We were able to solve this problem using Method #2. However, it was very tricky doing so and carrying over digits can easily lead to mistakes. We may have been better off doing this problem using Method #1.</p>
+<h5 class="minihead">The Better Method</h5>
+	<p>There is no clearly better method. However, Method #1 is generally a safer method, as doing math in base-10 has been engrained into our brains from youth. As we have seen, Method #2 is more efficient for simple addition and subtraction problems. Despite this, when it comes to complicated problems, it is no longer efficient. In the end, if for some reason you find yourself doing math in a number system that is not base-10, it is your choice for which method to use.</p>
+
+<h4 id="food">Food For Thought</h4>
+<p>You may skip this section if you wish, but you might find this interesting.</p>
+<p> Before we go on, please do the following:<br>
+1. Copy the following code:<br>
+<textarea readonly>
+let resultOne = 2 + 1;
+let resultTwo =  0.2 + 0.1;
+alert("2 + 1 is " + resultOne + "\n0.2 + 0.1 is " + resultTwo);</textarea> <br>
+2. Go to this website: <a href="https://www.webtoolkitonline.com/javascript-tester.html" target="_blank">https://www.webtoolkitonline.com/javascript-tester.html</a><br>
+3. Paste what you copied into where it says "JavaScript code"<br>
+4. At the bottom left, hit the "Execute" button </p>
+<p>If you did those steps correctly, you saw something like this:<br>
+<img src="static/alert.png"><br>
+That doesn't look right...</p>
+<h5 class="minihead">How could this possibly happen?</h5>
+<p>We know that 2 + 1 is equal to 3 and that 0.2 + 0.1 is equal to 0.3. The code that we put in can't work correctly, because it displayed the wrong value for 0.2 + 0.1. Or does it?</p>
+<p>To find the root of this issue, we need to delve into what exactly happens when we run that code.</p>
+<p>When we run that code, we're essentially giving the computer a set of instructions to perform. First, we create a variable called "resultOne" and give it the value of the sum of 2 and 1. We then create a variable called "resultTwo" and give it the value of the sum of 0.2 and 0.1. Finally, we tell the computer to send the user an alert, containing the values of both variables and additional text to make it look nice. From all this, it is clear that the error is coming when the computer is attempting to add 0.2 to 0.1.</p>
+<p>We need to delve even deeper into this. As I mentioned earlier, computers run on binary, or base-2. When a computer does a calculation, like adding two numbers, the computer converts the numbers into binary, adds the binary numbers, and converts the sum back into base-10.</p>
+<p>With this in mind, let's try to think like the computer. First, let's add 1 to 2:<br>
+1 in binary is still 1.<br>
+2 in binary is 10.<br>
+Adding 1 to 10, we get 11 in binary. This is equal to 3, as it is (1&#215;2<sup>1</sup>) + (1&#215;2<sup>0</sup>).</p>
+<p>We can see that the computer accurately calculates that 2 + 1 is 3. So, why is it that 0.2 + 0.1 isn't the same?</p>
+<p>Let's convert 0.1 into binary first:
+<table>
+	<tr>
+		<td><u>0</u></td>
+		<td>.</td>
+		<td><u>0</u></td>
+		{% for _ in range(3) %}
+			<td><u>0</u></td>
+			<td><u>0</u></td>
+			<td><u>1</u></td>
+			<td><u>1</u></td>
+		{% endfor %}
+	</tr>
+	<tr>
+		<td>2<sup>0</sup></td>
+		<td></td>
+		{% for num in range(1,14) %}
+		<td>2<sup>-{{num}}</sup></td>
+		{% endfor %}
+	</tr>
+</table>
+We have run into a problem trying to convert 0.1 into base-2. There is no exact representation of 0.1 in binary: it is equal to 0.0001100110011001100110011001100... and goes on forever.</p>
+<p>This would be no problem if the computer stores the number with infinite digits. As you may expect, however, it doesn't. Computers use a limited amount of bits, or digits, when storing numbers. Therefore, the binary representation it stores for 0.1 is merely an approximation for the number. For example, if we were representing 0.1 with 13 digits, we would actually be storing 0.0999755859.</p>
+<p>In a similar frustrating fashion, 0.2 is represented by 0.0011001100110011001100110011001100...</p>
+<p>The computer then adds the numbers in binary, but as I mentioned, it's not adding the actual numbers, rather approximations of them. Let's imagine that the computer stores 13 digits and adds the numbers given this constraint (it's not 13 digits in real life, as this is just an example):
+	<table>
+		<tr>
+			<td></td>
+			<td>.</td>
+			<td>0</td>
+			{% for _ in range(3) %}
+			<td>0</td>
+			<td>0</td>
+			<td>1</td>
+			<td>1</td>
+			{% endfor %}
+		</tr>
+		<tr class="prob">
+			<td>+</td>
+			<td>.</td>
+			{% for _ in range(3) %}
+			<td>0</td>
+			<td>0</td>
+			<td>1</td>
+			<td>1</td>
+			{% endfor %}
+			<td>0</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>.</td>
+			<td>0</td>
+			<td>1</td>
+			{% for _ in range(2) %}
+			<td>0</td>
+			<td>0</td>
+			<td>1</td>
+			<td>1</td>
+			{% endfor %}
+			<td>0</td>
+			<td>0</td>
+			<td>1</td>
+		</tr>
+	</table>
+</p>
+<p>The number 0.0100110011001 in binary comes out to be 0.2999267578 in decimal.</p>
+<p>Now, we can understand why we got an alert earlier saying that 0.2 + 0.1 was 0.30000000000000004. There were no errors in the code or the language, rather, it was a side effect of computers running on base-2.</p>
+{% endblock %}
+
+{% block script %}{% endblock %}
