@@ -92,10 +92,13 @@ The inverse sin, cos, and tan functions (sin<sup>-1</sup>, cos<sup>-1</sup>, tan
 {% block script %}
 <script type="text/javascript" src="static/convert.js"></script>
 <script>
-	"use strict";
+	"use strict"; //strict mode
+	/* the following adds a space between the keyboards
+	if they cannot fit side-by-side */
 	let added = false;
 	let over = document.getElementById("over");
 	function addSpace(){
+		//this adds the space
 		let space = document.createElement("div");
 		let letters = document.getElementById("letters");
 		space.setAttribute('id', "space");
@@ -108,40 +111,49 @@ The inverse sin, cos, and tan functions (sin<sup>-1</sup>, cos<sup>-1</sup>, tan
 		addSpace();
 	}
 	$(window).resize(function() {
-		if(window.innerWidth < 828 && added == false){
+		//when the window is resized, check if space should be added/removed
+		if(window.innerWidth < 828 && !(added)){
 			addSpace();
-		} else if(window.innerWidth >= 828 && added == true) {
+		} else if(window.innerWidth >= 828 && added) {
 			let space = document.getElementById("space");
 			over.removeChild(space);
 			added = false;
 	    }
 	});
 	function factorial(num){
+		//return the factorial of a number
 		if(num == 0){
 			return 1;
 		} else{
 			return num * factorial(num-1);
 		}
 	}
-	let base = document.getElementById("base");
-	let bar = document.getElementById("bar");
+	let base = document.getElementById("base"); //base input
+	let bar = document.getElementById("bar"); //main input
 	document.getElementById("clear").onclick = function(){
+		//clear main input
 		bar.value = "";
 	}
 	document.getElementById("delete").onclick = function(){
+		//delete last character of input
 		bar.value = bar.value.substring(0,bar.value.length-1);
 	}
 	function enter(){
+		//this executes when the enter button is clicked or the enter key is pressed
 		if(!(base.value)){
+			//if the user forgets to set a base, make it 10
 			base.value = 10;
 		}
 		if(base.value<2 || base.value>36){
+			//make sure the user enters a valid base
 			alert("Please enter a base between 2 and 36.");
 		}
 		let exp = bar.value;
 		function replace(fir,sec){
+			//replaces one value with another
 			exp = exp.split(fir).join(sec);
 		}
+		//replace a bunch of stuff
 		replace("^","**");
 		replace("−","-");
 		replace("π","Math.PI");
@@ -153,6 +165,7 @@ The inverse sin, cos, and tan functions (sin<sup>-1</sup>, cos<sup>-1</sup>, tan
 		replace("E","Math.E");
 		let rad = document.getElementById("rad");
 		if(rad.checked){
+			//replace these when in mode is radians
 			replace("sin(","Math.sin(");
 			replace("cos(","Math.cos(");
 			replace("tan(","Math.tan(");
@@ -160,6 +173,7 @@ The inverse sin, cos, and tan functions (sin<sup>-1</sup>, cos<sup>-1</sup>, tan
 			replace("cos-1(","Math.acos(");
 			replace("tan-1(","Math.atan(");
 		} else{
+			//replace these when in mode is degrees
 			replace("sin(","Math.sin((Math.PI/180)*");
 			replace("cos(","Math.cos((Math.PI/180)*");
 			replace("tan(","Math.tan((Math.PI/180)*");
@@ -168,19 +182,24 @@ The inverse sin, cos, and tan functions (sin<sup>-1</sup>, cos<sup>-1</sup>, tan
 			replace("tan-1(","(180/Math.PI)*Math.atan(");
 		}
 		function isNum(char){
+			//determine if a character is part of a number
 			return (char >= 48 && char <= 57) || char == 46;
 		}
 		function isLetter(char){
+			//determine if a character is a lowercase letter
 			return (char >= 97 && char <= 122);
 		}
 		function fact(inp){
+			//replace something! with factorial(something)
 			inp = inp.split("!");
 			let end = inp[inp.length-1];
 			inp.pop();
 			for(let i=0; i<inp.length; i++){
 				if(inp[i].substring(inp[i].length-1) == ")"){
+					//if there are parentheses before !, act accordingly
 					inp[i] = inp[i].substring(0,inp[i].lastIndexOf("(")) + "factorial(" + inp[i].substring(inp[i].lastIndexOf("(")+1);
 				} else{
+					//if no parentheses, just engulf number right before !
 					let j = inp[i].length-1;
 					while(true){
 						if(isNum(inp[i].charCodeAt(j))){
@@ -195,23 +214,27 @@ The inverse sin, cos, and tan functions (sin<sup>-1</sup>, cos<sup>-1</sup>, tan
 			return inp.join("") + end;
 		}
 		function gLog(inp){
+			//replace logb(something) with (Math.log(something)/Math.log(b))
 			let startIndices = [];
+			//find all instances (starting indices) of logb
 			for(var i=0; i<inp.length-2; i++){
 				if(inp.substring(i,i+3) == "log" && inp.substring(i-5,i) != "Math."){
 					startIndices.push(i);
 				}
 			}
 			if(startIndices.length == 0){
+				//if there are no instances of logb, exit function
 				return inp;
 			}
-			let final = "";
-			let j = 0;
-			let end;
+			let final = ""; //the final string
+			let j = 0; //iterates through through string
+			let end; //the last index of the number
 			for(let ind of startIndices){
 				final += inp.substring(j,ind);
-				let start = inp.indexOf("(",ind);
+				let start = inp.indexOf("(",ind); //the first index of the number
 				let k = start + 1;
 				let brackets = 0;
+				//set end to appropriate position
 				while(true){
 					if(inp.charAt(k) == ")" && brackets == 0){
 						end = k;
@@ -223,30 +246,35 @@ The inverse sin, cos, and tan functions (sin<sup>-1</sup>, cos<sup>-1</sup>, tan
 					}
 					k++;
 				}
-				end = inp.indexOf(")",start);
+				end = inp.indexOf(")",start); //adjust end to end bracket
+				//add to final
 				final += "(Math.log(" + inp.substring(start+1,end);
 				final += ")/Math.log(" + inp.substring(ind+3,start);
 				final += "))";
 				j = end + 1;
 			}
-			final += inp.substring(end + 1,inp.length);
+			final += inp.substring(end + 1,inp.length); //add end
 			return final;
 		}
 		function calc(userInp){
+			//calculations
 			userInp = userInp.split(" ").join("");
-			let extra = [];
+			let extra = []; //contains all non-numbers
 			let extraInd = 0;
-			let nums = [];
+			let nums = []; //contains all numbers
 			let numsInd = 0;
 			let numFirst = false;
 			for(let i=0; i<userInp.length; i++){
 				if(!(extra[extraInd])){
+					//create a new non-number string
 					extra[extraInd] = "";
 				}
 				if(!(nums[numsInd])){
+					//create a new number
 					nums[numsInd] = "";
 				}
 				function checkM(){
+					//make sure Math... does not go into numbers list
 					if(userInp.charAt(i) == "M"){
 						while(userInp.charAt(i-1) != "."){
 							extra[extraInd] += userInp.charAt(i);
@@ -265,11 +293,13 @@ The inverse sin, cos, and tan functions (sin<sup>-1</sup>, cos<sup>-1</sup>, tan
 						numFirst = true;
 					}
 					if(extra[extraInd] != ""){
+						//if it's a number, move to next non-number in list
 						extraInd++;
 					}
 					nums[numsInd] += userInp.charAt(i);
 				} else{
 					if(nums[numsInd] != ""){
+						//if it's a non-number, move to next number in list
 						numsInd++;
 					}
 					extra[extraInd] += userInp.charAt(i);
@@ -279,10 +309,12 @@ The inverse sin, cos, and tan functions (sin<sup>-1</sup>, cos<sup>-1</sup>, tan
 				nums.pop();
 			}
 			for(let j=0; j<nums.length; j++){
+				//convert each number to base-10
 				nums[j] = convertToDec(nums[j],base.value);
 			}
 			let final = "";
 			let i;
+			//put everything back together
 			if(numFirst){
 				for(i=0; i<extra.length; i++){
 					final += nums[i] + extra[i];
@@ -298,13 +330,16 @@ The inverse sin, cos, and tan functions (sin<sup>-1</sup>, cos<sup>-1</sup>, tan
 					final += extra[i];
 				}
 			}
+			//use the eval function to calculate (you can't hack in, I tried)
 			final = eval(final);
+			//convert answer back into original base
 			final = final.toString(base.value);
 			return final;
 		}
 		let okay = true;
 		let open = 0;
 		let close = 0;
+		//check if all parentheses are closed
 		for(let i=0; i<exp.length; i++){
 			if(exp.charAt(i) == "("){
 				open++;
@@ -313,10 +348,12 @@ The inverse sin, cos, and tan functions (sin<sup>-1</sup>, cos<sup>-1</sup>, tan
 			}
 		}
 		if(open != close){
+			//parentheses are not all closed
 			alert("Please close all your parentheses");
 			okay = false;
 		}
 		if(okay){
+			//parentheses are all closed, and it's okay to run
 			exp = fact(exp);
 			exp = gLog(exp);
 			bar.value = calc(exp);
@@ -327,12 +364,14 @@ The inverse sin, cos, and tan functions (sin<sup>-1</sup>, cos<sup>-1</sup>, tan
 	}
 	document.getElementById("enter").onclick = enter;
 	$(document).on("keydown",function(e){
+		//check if enter key is pressed
 		if(e.which == 13){
 			bar.focus();
 			enter();
 		}
 	});
 	function simpBtns(id){
+		//function for updating main input when a button is clicked
 		let btn = document.getElementById(id);
 		btn.onclick = function(){
 			bar.value += btn.innerHTML;
@@ -346,12 +385,14 @@ The inverse sin, cos, and tan functions (sin<sup>-1</sup>, cos<sup>-1</sup>, tan
 	simpBtns("fac"); simpBtns("pow"); simpBtns("plus"); simpBtns("min"); simpBtns("tim");
 	simpBtns("div"); simpBtns("dot"); simpBtns("pi"); simpBtns("op"); simpBtns("cl");
 	function compBtns(id,disp=""){
+		//function for updating main input when a button is clicked
 		let btn = document.getElementById(id);
 		btn.onclick = function(){
 			bar.value += disp;
 		}
 	}
 	function genLog(){
+		//prompt user and update main input when logb button is clicked
 		document.getElementById("genlog").onclick = function(){
 			bar.value += "log"+prompt("What base?")+"(";
 		}

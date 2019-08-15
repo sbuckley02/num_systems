@@ -20,14 +20,16 @@
 
 {% block script %}
 <script>
-	"use strict";
+	"use strict"; //strict mode
+	//variable definitions
 	let area = document.getElementById("area");
 	let yes = document.getElementById("yes");
 	let no = document.getElementById("no");
 	let feed = document.getElementById("feed");
 	let right = "You're clever. Either you know your number systems well, or you don't but just knew that was a trick question. Anyway, here's why 8 + 8 can be equal to 10:";
-	let wrong = "You simpleton. Did you really think I was going to ask if 8 + 8 could be equal to 10 for no reason? I obviously have an agenda here. Get with the program. Anyway, here's why 8 + 8 can be equal to 10:";
+	let wrong = "Did you really think I was going to ask if 8 + 8 could be equal to 10 for no reason? I obviously have an agenda here. Get with the program. Anyway, here's why 8 + 8 can be equal to 10:";
 	yes.onclick = function(){
+		//react when the user answers "Yes" to the question
 		area.style = "visibility:visible";
 		yes.disabled = "true";
 		no.disabled = "true";
@@ -36,6 +38,7 @@
 		addTxt(feed,right);
 	}
 	no.onclick = function(){
+		//react when the user answers "No" to the question
 		area.style = "visibility:visible";
 		yes.disabled = "true";
 		no.disabled = "true";
@@ -43,37 +46,45 @@
 		ques.style = "color: #f74343;"
 		addTxt(feed,wrong);
 	}
-	let executed = [false,false,false,false];
+	//more variable definitions
+	let executed = [false,false,false,false]; //used to make text appearances asynchronous
 	let greet = document.getElementById("greet");
 	let glad = document.getElementById("glad");
 	let gldtxt = "My name is Stephen Buckley. I don't know how or why you're here, but I'm glad that you are.";
 	let expl = document.getElementById("expl");
 	let exptxt = 'When adding 8 and 8 in our base-10 number system, the answer would obviously be 16. However, you can add 8 to 8 in other number systems, with different bases. In hexidecimal (base 16), for example, 8 + 8 would be 10, as 10 in hexidecimal is 16 in base-10. What is this you ask? What is hexidecimal? What does "base 16" or "base 10" mean? Allow my website to teach you.';
 	function addTxt(element,txt){
+		//add given text to a given element using a typing effect
 		function add(){
 			if(i < txt.length){
-				setTimeout(add,50,element,txt);
+				//add a character after a delay until all are there
+				setTimeout(add,30,element,txt);
 				element.innerHTML+=txt[i];
 				i++;
 			}
 			if(greet.innerHTML == "Greetings!" && !(executed[0])){
+				//wait for the heading to display
 				executed[0] = true;
 				addTxt(glad,gldtxt);
 			}
 			else if(glad.innerHTML == gldtxt && !(executed[1])){
+				//wait for the second text thing to display
 				executed[1] = true;
 				addTxt(document.getElementById("ques"),"Now, answer this: Can 8 + 8 be equal to 10?");
 				setTimeout(function(){
 					yes.style = "visibility:visible";
 					no.style = "visibility:visible";
-				},2500);
+				},1600);
 			}
 			else if((feed.innerHTML == right || feed.innerHTML == wrong) && !(executed[2])){
+				//wait for feedback to display
 				executed[2] = true;
 				addTxt(expl,exptxt);
 			}
 			else if(expl.innerHTML == exptxt && !(executed[3])){
+				//wait for explanation to display
 				executed[3] = true;
+				//display buttons each after some delay
 				let btns = ["le","conv","calc"];
 				let j=0;
 				let t = setInterval(function(){
@@ -89,6 +100,7 @@
 		let i = 0;
 		add();
 	}
+	//add greeting heading to start the process
 	addTxt(greet,"Greetings!");
 	</script>
 {% endblock %}
