@@ -1,4 +1,7 @@
-# num_systems
-Please don't judge...
+# Number Systems
+I made this website out of boredom, so please don't judge it.
 
-I made this website for fun. At some point I'll add in comments, but I kind of made this so I could tell people "Check it out! I made a website! It does stuff!"
+It serves three purposes:
+1. To teach people about number systems, especially binary and hexadecimal
+2. To convert a number from one number system to another
+3. To perform complex calculations in any number system (between 2 and 36, that is)
