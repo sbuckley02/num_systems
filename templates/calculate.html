@@ -391,6 +391,17 @@ The inverse sin, cos, and tan functions (sin<sup>-1</sup>, cos<sup>-1</sup>, tan
 			bar.value += disp;
 		}
 	}
+	function sqr(){
+		//update main input when square button is clicked
+		document.getElementById("sqr").onclick = function(){
+			//if the base is 2, then 2 is represented by 10
+			if(base.value == 2){
+				bar.value += "^10";
+			} else {
+				bar.value += "^2";
+			}
+		}
+	}
 	function genLog(){
 		//prompt user and update main input when logb button is clicked
 		document.getElementById("genlog").onclick = function(){
@@ -401,7 +412,7 @@ The inverse sin, cos, and tan functions (sin<sup>-1</sup>, cos<sup>-1</sup>, tan
 	compBtns("tan","tan("); compBtns("log10","log("); compBtns("ln","ln(");
 	compBtns("sqrt",String.fromCharCode(8730)+"("); compBtns("spec_e","E");
 	compBtns("arcsin","sin-1("); compBtns("arccos","cos-1("); compBtns("arctan","tan-1(");
-	compBtns("sqr","^2");
+	sqr();
 	genLog();
 </script>
 {% endblock %}
